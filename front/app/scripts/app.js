@@ -19,7 +19,9 @@ angular
     'angular-table',
     'chartjs',
     'angularMoment',
-    'angulartics', 'angulartics.google.analytics'
+    'angulartics',
+    'angulartics.google.analytics',
+    'angular-jqcloud'
   ])
   .config(['$routeProvider',
            '$locationProvider',
@@ -28,6 +30,10 @@ angular
     $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
+        templateUrl: '/views/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/repos', {
         templateUrl: '/views/repos.html',
         controller: 'ReposCtrl'
       })
@@ -52,7 +58,7 @@ angular
       });
   }])
   .run(['$rootScope', function($rootScope) {
-    $rootScope.apiUrl = "http://localhost:3000";
+    $rootScope.apiUrl = "https://api.govcode.org";
   }])
   .filter('multifilter', function() {
     return function(items, options) {
